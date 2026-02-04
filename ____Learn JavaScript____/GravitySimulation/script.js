@@ -17,37 +17,34 @@ const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
 // Ball properties
-let x = 250;
+let x = 50;
 let y = 50;
-let radius = 15;
+let size = 30
 
-let velocityY = 0;
-const gravity = 0.1;
+let v = 0;
+const g = 9.8;
 const bounce = 0.7; // energy loss
 
-function update() {
-    // Physics
-    velocityY = velocityY + gravity; // v = v + g
-    y = y + gravity; // y = y + v;
-
-    // Ground collision
-    if(y + radius > canvas.height) {
-        y = canvas.height - radius;
-        velocityY = velocityY * (-1*bounce);
-    }
-}
 
 function draw() {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    c.beginPath();
-    c.arc(x, y, radius, 0, Math.PI * 2);
-    c.fillStyle = "cyan";
-    c.fill();
+    c.strokeStyle = "red";
+    c.lineWidth = 4;
+    c.strokeRect(x, y, size, size);
 }
 
+
+let lastTime = performance.now();
 function loop() {
-    update();
+    let now = performance.now();
+    let dt = (now - lastTime) / 1000; // convert ms -> seconds
+    lastTime = now;
+
+    v += g * dt;
+    y += v * dt;
+
+
     draw();
     requestAnimationFrame(loop);
 }
