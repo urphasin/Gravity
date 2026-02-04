@@ -22,7 +22,7 @@ let y = 50;
 let radius = 15;
 
 let velocityY = 0;
-const gravity = 0.6;
+const gravity = 0.1;
 const bounce = 0.7; // energy loss
 
 function update() {
