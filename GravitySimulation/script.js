@@ -38,6 +38,7 @@ function draw() {
     c.fillText(("(" + x.toString() + " ," + y.toString() + ")"), 50, 50, 500);
 }
 
+/* hello */
 
 let lastTime = performance.now();
 function loop() {
